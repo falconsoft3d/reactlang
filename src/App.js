@@ -13,7 +13,7 @@ function App() {
     <Layout>
       <Router>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/game" component={GamePage} />
+          <Route exact path="/game/:name" component={GamePage} />
       </Router>
     </Layout>
   );
