@@ -1,4 +1,0 @@
-# ReactLang
-```
-yarn start
-```
