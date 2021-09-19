@@ -1,0 +1,12 @@
+[
+    {
+        "code" : "1",
+        "left" : "Hello",
+        "right" : "Hola"
+    },
+    {
+        "code" : "2",
+        "left" : "Bye",
+        "right" : "Adios"
+    }
+]
