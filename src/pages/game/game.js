@@ -59,26 +59,30 @@ const GamePage = () => {
     setWordInThisPage(GiveMe);
   }, []);
 
-  
+  console.log("leftArray.length", leftArray.length)
+  if (leftArray.length === 0 ) return null;
 
   return ( 
     <div>
-      <h3>Welcome to the React Router Tutorial</h3>
+      <h3>ReactGame</h3>
       <small>Game: {name}</small>
-      { console.log(l2000s) }
+      
+      {/* { console.log(l2000s) }
       { console.log("linesArray:", linesArray) }
       { console.log("leftArray", leftArray )}
+
       { console.log("rightArray", rightArray )}
       { console.log("leftArray[0]", leftArray[0] )}
       { console.log("rightArray[0]", rightArray[0] )}
       { console.log("leftArray[1]", leftArray[1] )}
-      { console.log("rightArray[1]", rightArray[1] )}
+      { console.log("rightArray[1]", rightArray[1] )} */}
       
       { leftArray && rightArray && linesArray.map((pos) => (
         <LineButton key={pos}
-           left={ (leftArray[pos]) ? l2000s[leftArray[pos]].left : 0}
-           right={ (rightArray[pos]) ? l2000s[rightArray[pos]].right : 0 }
-           // right={l2000s[rightArray[pos]].right}
+            // left={ (leftArray[pos]) ? l2000s[leftArray[pos]].left : 0}
+            // right={ (rightArray[pos]) ? l2000s[rightArray[pos]].right : 0 }
+            left={l2000s[leftArray[pos]].left}
+            right={l2000s[rightArray[pos]].right}
           activeleft="true"
           activeright="true"
         />
@@ -99,8 +103,13 @@ const LineButton = ({ left, right, activeleft, activeright }) => {
 };
 
 const ButtonText = ({ text, active }) => {
+
+  const handleClick = () =>  {
+      alert("Hello")
+  }
+
   return (
-    <div className={`btn ${active}`}>
+    <div className={`btn ${active}`}  onClick={handleClick} >
       <p>{text}</p>
     </div>
   );
