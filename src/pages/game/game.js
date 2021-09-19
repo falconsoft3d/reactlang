@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./game.css";
 import { useParams } from "react-router-dom";
 import l2000s from "../../database/2000.json";
+import {
+  Link,
+} from "react-router-dom";
 
 const TOTAL_WORD = 6;
 const LINE_FOR_PAGE = 4;
@@ -64,8 +67,7 @@ const GamePage = () => {
 
   return ( 
     <div>
-      <h3>ReactGame</h3>
-      <small>Game: {name}</small>
+      <GameHeader title={name}/>
       
       {/* { console.log(l2000s) }
       { console.log("linesArray:", linesArray) }
@@ -114,3 +116,19 @@ const ButtonText = ({ text, active }) => {
     </div>
   );
 };
+
+
+const GameHeader = ({title}) => {
+  return (
+    <>
+    <div className="header-game">
+        <div className="header-game-begin"><Link to="/" className="white">Begin</Link> </div>
+        <div className="header-game-title">{title}</div>
+        <div className="header-game-look">Look</div>
+    </div>
+    <div className="header-game-down">
+        <div className="header-game-title">1000 Right / 20 wrong</div>
+    </div>
+    </>
+  )
+}

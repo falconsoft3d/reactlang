@@ -28,3 +28,25 @@
 .false {
     background-color: #A9D876 !important;
 }
+
+.header-game {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.header-game-title {
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.header-game-down {
+    margin-bottom: 35px;
+}
+
+.header-game-down {
+    margin-bottom: 10px;
+}

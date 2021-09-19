@@ -8,7 +8,7 @@ import "./WhiteBox.css";
 export default function WhiteBox() {
     return (
         <div className="white-box">
-            <Link to="/game/2000">English 2000 Words</Link>
+            <Link className="green" to="/game/2000">English 2000 Words</Link>
         </div>
     )
 }

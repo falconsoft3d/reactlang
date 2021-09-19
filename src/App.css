@@ -7,6 +7,14 @@
   pointer-events: none;
 }
 
+.white {
+  color: #fff;
+}
+
+.green {
+  color: #6BBB13;
+}
+
 
 body {
   background-color: #6BBB13;
