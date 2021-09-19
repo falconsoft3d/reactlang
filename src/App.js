@@ -1,13 +1,10 @@
 import './App.css';
 import Layout from './Layout/Layout';
-import GamePage from './pages/game';
+import GamePage from './pages/game/game';
 import HomePage from './pages/home';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link,
-  Redirect
 } from "react-router-dom";
 
 

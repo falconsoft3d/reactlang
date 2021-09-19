@@ -1,4 +1,5 @@
 import React from "react";
+import "./game.css";
 
 const GamePage = () => {
   return (
