@@ -1,11 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import Layout from './components/Layout/Layout';
+import Layout from './Layout/Layout';
+import GamePage from './pages/game';
+import HomePage from './pages/home';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from "react-router-dom";
+
 
 function App() {
   return (
     <Layout>
-        
+      <Router>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/game" component={GamePage} />
+      </Router>
     </Layout>
   );
 }

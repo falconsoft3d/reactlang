@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Layout() {
+export default function Layout(props) {
+    const { children } = props;
     return (
         <div className="layout">
-            <h1>Layout</h1>
+            {children}
         </div>
     )
 }
