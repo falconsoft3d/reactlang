@@ -1,21 +1,24 @@
-FROM node:14
+# pull the base image
+FROM node:lts-alpine
 
-# Creo la carpeta para copiar mi info
-RUN mkdir -p /usr/src/app
+# set the working direction
+WORKDIR /app
 
-# Me muevo a esa carpeta
-WORKDIR /usr/src/app
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-# Copiamos los json
-COPY package*.json ./
+# install app dependencies
+COPY package.json ./
 
-# Instalamos los paquetes
+COPY yarn.lock ./
+
+# rebuild node-sass
+RUN yarn add node-sass
+
 RUN yarn
 
-# COPY src ./
-COPY . .
+# add app
+COPY . ./
 
-# Configuramos
-EXPOSE 3010
-
+# start app
 CMD ["yarn", "start"]
