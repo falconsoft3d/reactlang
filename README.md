@@ -1,3 +1,8 @@
+# ReactLang
+```
+It is a pwa to study English based on json with reactjs
+```
+
 # Install Docker
 ```
 apt-get update && apt-get upgrade -y
