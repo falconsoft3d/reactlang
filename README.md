@@ -3,7 +3,7 @@
 It is a pwa to study English based on json with reactjs
 ```
 
-![Alt text](https://github.com/falconsoft3d/reactlang/blob/master/img/reactlang.png?raw=true "reactlang")
+![Alt text](https://github.com/falconsoft3d/reactlang/blob/main/img/reactlang.png?raw=true "reactlang")
 
 # Install Docker
 ```
