@@ -1,4 +1,4 @@
-# 1 install Docker
+# 1 Install Docker
 ```
 apt-get update && apt-get upgrade -y
 apt  install docker.io docker-compose -y
