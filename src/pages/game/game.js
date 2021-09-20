@@ -6,8 +6,8 @@ import {
   Link,
 } from "react-router-dom";
 
-const TOTAL_WORD = 6;
-const LINE_FOR_PAGE = 4;
+const TOTAL_WORD = 1000;
+const LINE_FOR_PAGE = 10;
 
 function shuffle(array) {
   let currentIndex = array.length,
@@ -32,13 +32,16 @@ function shuffle(array) {
 const GamePage = () => {
   const { name } = useParams();
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(TOTAL_WORD / LINE_FOR_PAGE);
-  const [right, SetRight] = useState(0);
-  const [wrong, SetWrong] = useState(0);
+  const [totalPage, setTotalPage] = useState( Math.ceil(TOTAL_WORD / LINE_FOR_PAGE) );
+  const [right, setRight] = useState(0);
+  const [wrong, setWrong] = useState(0);
   const [wordInThisPage, setWordInThisPage] = useState([]);
+  const [clickArray, setClickArray] = useState([]);
 
   const [leftArray, setLeftArray] = useState([]);
   const [rightArray, setRightArray] = useState([]);
+
+  const [linesArray, setLinesArray] = useState([]);
 
   const GiveMeWords = () => {
     const ListWords = [];
@@ -51,63 +54,95 @@ const GamePage = () => {
     return ListWords;
   };
 
-  const linesArray = Array.from(Array(LINE_FOR_PAGE).keys());
-
+  // const linesArray = range(page-1, LINE_FOR_PAGE-1);
   useEffect(() => {
+    const fini = (page-1)*LINE_FOR_PAGE
+    const fend = fini+10-1
+    setLinesArray(range(fini, fend));
     const GiveMe = GiveMeWords();
-    const rightArray = shuffle(Array.from(Array(LINE_FOR_PAGE).keys()));
-    const leftArray = shuffle(Array.from(Array(LINE_FOR_PAGE).keys()));
+    const rightArray = shuffle(range(fini, fend));
+    const leftArray = shuffle(range(fini, fend));
     setLeftArray(leftArray);
     setRightArray(rightArray);
     setWordInThisPage(GiveMe);
-  }, []);
+  }, [page]);
 
-  console.log("leftArray.length", leftArray.length)
+  useEffect(() => {
+    const alength = clickArray.length
+    if (alength > 1) {
+      if (checkArray(clickArray)) {
+        setRight(right+1)
+      } else {
+        setWrong(wrong+1)
+      }
+      setClickArray([])
+    }
+  }, [clickArray]);
+
   if (leftArray.length === 0 ) return null;
-
+  const linesArray2 = [0,1,2,3,4,5,6,7,8,9]
   return ( 
     <div>
-      <GameHeader title={name}/>
-      
-      {/* { console.log(l2000s) }
-      { console.log("linesArray:", linesArray) }
-      { console.log("leftArray", leftArray )}
+      <GameHeader title={name} right={right} wrong={wrong} />
+      { leftArray && rightArray && linesArray2.map((pos) => (
 
-      { console.log("rightArray", rightArray )}
-      { console.log("leftArray[0]", leftArray[0] )}
-      { console.log("rightArray[0]", rightArray[0] )}
-      { console.log("leftArray[1]", leftArray[1] )}
-      { console.log("rightArray[1]", rightArray[1] )} */}
-      
-      { leftArray && rightArray && linesArray.map((pos) => (
-        <LineButton key={pos}
-            // left={ (leftArray[pos]) ? l2000s[leftArray[pos]].left : 0}
-            // right={ (rightArray[pos]) ? l2000s[rightArray[pos]].right : 0 }
-            left={l2000s[leftArray[pos]].left}
-            right={l2000s[rightArray[pos]].right}
+        <LineButton key={pos} page={page}
+             left={l2000s[leftArray[pos]] ? l2000s[leftArray[pos]].left : 0}
+             right={l2000s[rightArray[pos]] ? l2000s[rightArray[pos]].right : 0}
           activeleft="true"
           activeright="true"
+          clickArray={clickArray}
+          setClickArray={setClickArray}
         />
+
       ))}
+
+      <GameFooter thispage={page} totalPage={totalPage} page={page}  setPage={setPage} totalPage={totalPage}/>
     </div>
   );
 };
 
 export default GamePage;
 
-const LineButton = ({ left, right, activeleft, activeright }) => {
+const LineButton = ({ left, right, clickArray, setClickArray, page }) => {
+  const [activeLeft, setActiveLeft] = useState(true);
+  const [activeRight, setActiveRight] = useState(true);
   return (
     <div className="ListButtton">
-      <ButtonText text={left} active={activeleft} />
-      <ButtonText text={right} active={activeright} />
+      <ButtonText pos="left"
+                  page={page}
+                  text={left} 
+                  active={activeLeft}
+                  setActiveLeft={setActiveLeft}
+                  clickArray={clickArray} setClickArray={setClickArray}/>
+      
+      <ButtonText pos="right"
+                  page={page}
+                  text={right} 
+                  active={activeRight}
+                  setActiveRight={setActiveRight}
+                  clickArray={clickArray} setClickArray={setClickArray}/>
     </div>
   );
 };
 
-const ButtonText = ({ text, active }) => {
+const ButtonText = ({ text, active, setActiveLeft, setActiveRight, clickArray, setClickArray, pos, page }) => {
+  
+  useEffect(() => {
+    pos==="left" ? setActiveLeft(true) : setActiveRight(true)
+  }, [page])
 
   const handleClick = () =>  {
-      alert("Hello")
+      if (active) {
+        const alength = clickArray.length
+        if (alength <= 1) {
+          setClickArray(clickArray => [...clickArray, text])
+        }
+        pos==="left" ? setActiveLeft(false) : setActiveRight(false)
+      } 
+      else {
+        setClickArray([])
+      }
   }
 
   return (
@@ -118,17 +153,63 @@ const ButtonText = ({ text, active }) => {
 };
 
 
-const GameHeader = ({title}) => {
+const GameHeader = ({title, right, wrong}) => {
+
   return (
     <>
     <div className="header-game">
         <div className="header-game-begin"><Link to="/" className="white">Begin</Link> </div>
         <div className="header-game-title">{title}</div>
-        <div className="header-game-look">Look</div>
+        <div className="header-game-look" > M.F.H </div>
     </div>
     <div className="header-game-down">
-        <div className="header-game-title">1000 Right / 20 wrong</div>
+        <div className="header-game-title">{right} Right / {wrong} wrong / {TOTAL_WORD}</div>
     </div>
     </>
   )
+}
+
+
+const GameFooter = ({thispage, totalPage, page,setPage}) => {
+  const handleNext = () =>  {
+    setPage(page+1);
+  }
+  const handlePrev = () =>  {
+    setPage(page-1);
+  }
+
+
+  return (
+  <div className="footer-wrapper">
+    <div className="footer-game">
+      { page === 1 ? ( <div className="footer-prev">...</div> ) :   ( <div className="footer-prev" onClick={handlePrev}>PREV</div> ) }
+        
+        
+        <div className="footer-pages">Page {thispage}/{totalPage}</div>
+        
+        { page < totalPage ? (<div className="footer-prev" onClick={handleNext}>NEXT</div>) 
+        : <div className="footer-prev">....</div> }
+    </div>
+  </div>  )
+}
+
+
+const checkArray = (arrayToCheck) => {
+    const right = l2000s.find(x => x.left === arrayToCheck[0]) && l2000s.find(x => x.left === arrayToCheck[0]).right;
+    const left = l2000s.find(x => x.right === arrayToCheck[0]) && l2000s.find(x => x.right === arrayToCheck[0]).left;
+    const value = right || left
+    if (value === arrayToCheck[1]) {
+      return true
+    } else {
+      return false
+    }
+}
+
+
+function range(start, end) {
+  var foo = [];
+  for (var i = start; i <= end; i++) {
+      foo.push(i);
+  }
+  return foo;
 }

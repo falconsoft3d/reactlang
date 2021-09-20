@@ -50,3 +50,28 @@
 .header-game-down {
     margin-bottom: 10px;
 }
+
+.footer-wrapper{
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
+
+
+.footer-game {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.footer-prev {
+    font-size: 12px;
+}
+
+.footer-pages{
+    font-weight: bold;
+    
+}
+
+

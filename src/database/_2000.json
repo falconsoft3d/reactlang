@@ -1,0 +1,23 @@
+[
+        { "code" : "0", "left" : "House", "right" : "Casa"},
+        { "code" : "1", "left" : "Hello", "right" : "Hola"},
+        { "code" : "2", "left" : "One", "right" : "Uno"},
+        { "code" : "3", "left" : "Two", "right" : "Dos"},
+        { "code" : "4", "left" : "Line", "right" : "Línea"},
+        { "code" : "5", "left" : "Boat", "right" : "Barco"},
+        { "code" : "6", "left" : "He", "right" : "El"},
+        { "code" : "7", "left" : "You", "right" : "Tú"},
+        { "code" : "8", "left" : "Love", "right" : "Amor"},
+        { "code" : "9", "left" : "Key", "right" : "Tecla"},
+        { "code" : "10", "left" : "Ten", "right" : "Diez"},
+        { "code" : "11", "left" : "You", "right" : "Tu"},
+        { "code" : "12", "left" : "Help", "right" : "Ayuda"},
+        { "code" : "13", "left" : "Moon", "right" : "Luna"},
+        { "code" : "14", "left" : "Pool", "right" : "Alar"},
+        { "code" : "15", "left" : "Push", "right" : "Empujar"},
+        { "code" : "16", "left" : "Hand", "right" : "Mano"},
+        { "code" : "17", "left" : "sand", "right" : "Arena"},
+        { "code" : "18", "left" : "Software", "right" : "Programa"},
+        { "code" : "19", "left" : "excuse", "right" : "Disculpe"},
+        { "code" : "20", "left" : "car", "right" : "Coche"}
+]
