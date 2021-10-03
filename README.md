@@ -5,6 +5,8 @@ It is a pwa to study English based on json with reactjs
 
 ![Alt text](https://github.com/falconsoft3d/reactlang/blob/main/img/reactlang.png?raw=true "reactlang")
 
+![Alt text](https://github.com/falconsoft3d/reactlang/blob/main/img/qr.png?raw=true "qr reactlang")
+
 # Install Docker
 ```
 apt-get update && apt-get upgrade -y
